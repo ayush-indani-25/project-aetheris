@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Aetheris - Mission Control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">PROJECT <span>AETHERIS</span></a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Mission</a></li>
+                    <li><a href="crew.html">Crew</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><button id="theme-toggle" class="filter-btn" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Toggle Cabin Mode</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h1>Exploring the Hidden Ocean of Europa</h1>
+            <p>Project Aetheris is a daring mission to Jupiter's icy moon, <strong>Europa</strong>. Beneath its frozen surface lies a giant ocean of liquid water. Our goal is to melt through the ice, explore the dark waters below, and see if alien life is swimming in the deep.</p>
+            
+            <div class="card telemetry-card">
+                <h2>🛰️ Live Spaceship Tracking</h2>
+                <p>Current Status: <span id="flight-status" style="color: #22c55e; font-weight: bold;">Cruising Through Deep Space</span></p>
+                <p>Distance Traveled: <span id="distance-counter" style="color: #00f2fe; font-weight: bold;">142,000,500</span> km</p>
+                <p>Engine Power Level: <span id="reactor-level" style="color: #00f2fe; font-weight: bold;">98.40</span>%</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>How We Will Do It</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Melting Through the Ice</h3>
+                    <p>Europa is covered in a crust of solid ice 10 miles thick. We will use a special heated drill robot to slowly melt a tunnel straight down to the water.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Searching for Life</h3>
+                    <p>Once inside the ocean, robotic submarines will explore warm underwater volcanoes. On Earth, tiny creatures live near hot ocean vents without any sunlight, so life might exist there too.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Why This Mission Matters for Our Future</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Are We Alone in Space?</h3>
+                    <p>Finding even tiny, microscopic living things on Europa would prove that Earth is not the only place with life. It would be the biggest discovery in human history.</p>
+                </div>
+                <div class="card">
+                    <h3>Building Better Spaceships</h3>
+                    <p>Jupiter is far away and surrounded by dangerous space radiation. Learning how to keep astronauts safe on this trip will help us build ships that can travel even deeper into space.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Join the Crew: Get Your Student Boarding Pass</h2>
+            <p>Want to be part of the next generation of space explorers? Enter your name and pick a space career below to print your own digital boarding pass!</p>
+            
+            <div class="interactive-box">
+                <form id="cadet-form">
+                    <div class="form-group">
+                        <label for="cadet-name">Your Full Name</label>
+                        <input type="text" id="cadet-name" required placeholder="Type your name here...">
+                    </div>
+                    <div class="form-group">
+                        <label for="cadet-track">Choose Your Space Career</label>
+                        <select id="cadet-track">
+                            <option value="Spaceship Pilot">Spaceship Pilot</option>
+                            <option value="Deep-Space Navigator">Deep-Space Navigator</option>
+                            <option value="Ship Systems Engineer">Ship Systems Engineer</option>
+                            <option value="Robotics & Submarine Engineer">Robotics & Submarine Engineer</option>
+                            <option value="Alien Ocean Biologist">Alien Ocean Biologist</option>
+                            <option value="Planetary Geologist">Planetary Geologist</option>
+                            <option value="Space Communications Expert">Space Communications Expert</option>
+                            <option value="Space Flight Surgeon">Space Flight Surgeon</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="action-btn">Create My Boarding Pass</button>
+                </form>
+                <div id="pass-output"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Project Aetheris Space Program. Created for the TSA Website Design Competition.</p>
+        <div class="footer-links">
+            <a href="./docs/aetheries-portfolio.pdf" target="_blank">Portfolio</a>
+            <a href="./docs/aetheries-plan-of-work.pdf" target="_blank">Plan of Work Log</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+/* ==========================================================================
+   1. GLOBAL SYSTEM DESIGN TOKENS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-dark: #05070f;
+    --card-bg: rgba(19, 26, 38, 0.7);
+    --text-light: #f0f4f8;
+    --text-muted: #94a3b8;
+    --accent: #00f2fe;
+    --accent-hover: #4facfe;
+    --border-color: rgba(30, 41, 59, 0.8);
+    --error: #ef4444;
+    --success: #22c55e;
+}
+
+/* Cosmic Background Glow Layer */
+body {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at center, #0d1527 0%, #05070f 100%);
+    background-attachment: fixed;
+    color: var(--text-light);
+    line-height: 1.6;
+    transition: background-image 0.5s, color 0.3s;
+}
+
+/* ==========================================================================
+   2. INTERACTIVE CABIN MODE OVERRIDES (ACCESSIBILITY TINT)
+   ========================================================================== */
+body.cabin-mode {
+    --accent: #ff3333;
+    --accent-hover: #ff6666;
+    background-image: radial-gradient(circle at center, #1a0505 0%, #050101 100%);
+}
+
+body.cabin-mode header {
+    background-image: linear-gradient(rgba(35, 5, 5, 0.85), rgba(15, 1, 1, 0.92)), url("./assets/header-space.jpg");
+}
+
+body.cabin-mode .card:hover {
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.25);
+}
+
+/* ==========================================================================
+   3. STICKY INTERFACE HEADER & GLOBAL NAVIGATION Menu
+   ========================================================================== */
+header {
+    /* 1. Lower the dark tint from 0.85 down to 0.35 so the blue glow shines through */
+    background-image: linear-gradient(rgba(5, 7, 15, 0.35), rgba(5, 7, 15, 0.45)), url("./assets/header-space.jpg");
+   
+    background-size: cover;
+    
+    /* 2. Shift the vertical alignment down to 85% so the bright blue horizon line sits right behind your menu */
+    background-position: center 85%; 
+    
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--border-line);
+
+    min-height: 220px; 
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+}
+
+.logo a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 2.0rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+/* 1. Add a sleek, dark frosted-glass pill box around the navigation menu */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+    background-color: rgba(5, 7, 15, 0.75); /* Dark backdrop behind the links */
+    backdrop-filter: blur(8px);              /* Frosted-glass blur effect */
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;                     /* Smooth pill shape */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* 2. Make the text bright white and bold so it pops against the dark pill */
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.6); /* Subtle neon glow on the active link */
+}
+
+
+/* ==========================================================================
+   4. CONTENT LAYOUT HOOKS
+   ========================================================================== */
+main {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+section {
+    margin-bottom: 4rem;
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { color: var(--accent); font-size: 1.8rem; border-left: 4px solid var(--accent); padding-left: 0.8rem; margin-bottom: 1.5rem; }
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+/* Grid Frameworks */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+/* ==========================================================================
+   5. CONTROLS, DYNAMIC INTERACTION, AND TELEMETRY PANELS
+   ========================================================================== */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    border-color: var(--accent);
+}
+
+.crew-card.hidden {
+    display: none;
+}
+
+/* ==========================================================================
+   CREW PORTRAIT HEADERS
+   ========================================================================== */
+.crew-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.crew-header h3 {
+    margin-bottom: 0.25rem;
+}
+
+.crew-job {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+
+.crew-avatar {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0; /* Prevents the circle from squishing on narrow screens */
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+}
+
+/* Updates avatar border glow when Night-Vision Cabin Mode is active */
+body.cabin-mode .crew-avatar circle:first-child {
+    stroke: var(--accent);
+}
+
+
+.telemetry-card p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-light);
+}
+
+/* ==========================================================================
+   6. TECHNICAL FORMS & OVERLAY MODALS
+   ========================================================================== */
+.interactive-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: rgba(5, 7, 15, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.action-btn {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    border: none;
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+#calc-result, #pass-output {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.success-msg { background-color: rgba(34, 197, 94, 0.15); border: 1px solid var(--success); color: #4ade80; }
+.error-msg { background-color: rgba(239, 68, 68, 0.15); border: 1px solid var(--error); color: #f87171; }
+
+.ticket {
+    border: 2px dashed var(--accent);
+    padding: 1.5rem;
+    background-color: rgba(5, 7, 15, 0.9);
+}
+
+/* Diagnostics Modal Architecture Overlay */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 7, 15, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal-content {
+    background-color: #0d1527;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    padding: 2.5rem;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+}
+
+
+/* ==========================================================================
+   INTERACTIVE SPACESHIP HOTSPOTS
+   ========================================================================== */
+.ship-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.ship-image {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: block;
+}
+
+.hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgba(5, 7, 15, 0.85);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px var(--accent);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    background-color: var(--accent);
+    color: var(--bg-dark);
+}
+
+
+/* ==========================================================================
+   7. SYSTEM EVALUATION FOOTER
+   ========================================================================== */
+footer {
+    border-top: 1px solid var(--border-color);
+    background-color: rgba(5, 7, 15, 0.9);
+    padding: 2.5rem 0;
+    margin-top: 6rem;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent-hover);
+}
+
+@media (max-width: 768px) {
+    .nav-container { flex-direction: column; gap: 1rem; }
+    main { margin: 1.5rem auto; }
+    h1 { font-size: 2rem; }
+    .filter-controls { flex-wrap: wrap; }
+}

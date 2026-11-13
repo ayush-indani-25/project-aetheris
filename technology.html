@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Aetheris - Spacecraft Technology</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html">PROJECT <span>AETHERIS</span></a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Mission</a></li>
+                    <li><a href="crew.html">Crew</a></li>
+                    <li><a href="technology.html" class="active">Technology</a></li>
+                    <li><button id="theme-toggle" class="filter-btn" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Toggle Cabin Mode</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section style="text-align: center;">
+            <h1>Explore Our Spaceship</h1>
+            <p>Traveling to Jupiter takes years, so regular rocket fuel is too heavy. Click directly on the glowing hotspots on the <strong>Aetheris Explorer</strong> below to see how each part works!</p>
+            
+            <!-- RESPONSIVE SPACESHIP CONTAINER -->
+            <div class="ship-wrapper">
+                <img src="./assets/spaceship.jpg" alt="Aetheris Explorer Blueprint" class="ship-image">
+                
+                <!-- 1. ELECTRIC PLASMA ENGINE (Far Left) -->
+                <button class="hotspot tech-trigger" style="top: 48%; left: 26%;" 
+                        data-title="Electric Plasma Engine" 
+                        data-desc="Instead of burning heavy rocket fuel, this engine uses electricity to shoot glowing gas out the back. It pushes the ship gently at first, eventually reaching super-fast speeds.">
+                    <span>+</span>
+                </button>
+
+                <!-- 2. TOP & BOTTOM WINGS (Left-Center) -->
+                <button class="hotspot tech-trigger" style="top: 25%; left: 37%;" 
+                        data-title="Solar & Steering Wings" 
+                        data-desc="These wings help balance the ship when entering a planet's atmosphere and hold sensors that measure space weather.">
+                    <span>+</span>
+                </button>
+
+                <!-- 3. ASTRONAUT LIVING QUARTERS (Center Body) -->
+                <button class="hotspot tech-trigger" style="top: 48%; left: 56%;" 
+                        data-title="Astronaut Living Quarters" 
+                        data-desc="This is where the crew eats, sleeps, and exercises. The walls are lined with water tanks that block harmful space radiation.">
+                    <span>+</span>
+                </button>
+
+                <!-- 4. COCKPIT & BRAIN OF THE SHIP (Right Nose Cone) -->
+                <button class="hotspot tech-trigger" style="top: 45%; left: 78%;" 
+                        data-title="The Brain of the Ship (Cockpit)" 
+                        data-desc="This front section holds the main computers, radar, and navigation cameras that help the ship dodge space rocks.">
+                    <span>+</span>
+                </button>
+            </div>
+        </section>
+
+
+        <section>
+            <h2>Rocket Weight & Fuel Calculator</h2>
+            <p>Every extra pound of gear makes a rocket harder to launch. Type in a cargo weight and fuel level below to see if your spaceship is light enough to take off!</p>
+            
+            <div class="interactive-box">
+                <form id="calc-form">
+                    <div class="form-group">
+                        <label for="cargo-input">Equipment & Supplies Weight (in Tons)</label>
+                        <input type="number" id="cargo-input" min="10" max="500" value="150" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel-input">Fuel Tank Power Level (%)</label>
+                        <input type="number" id="fuel-input" min="40" max="100" value="80" required>
+                    </div>
+                    <button type="submit" class="action-btn">Test Rocket Launch</button>
+                </form>
+                <div id="calc-result"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Hidden Pop-Up Window for Spaceship Parts -->
+    <div id="tech-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <h2 style="border-left: none; padding-left: 0; margin-bottom: 0.5rem;">Spaceship Part Details</h2>
+            <p style="font-size: 1rem; color: var(--text-light);">Click a part of the spaceship to inspect how it works.</p>
+            <button id="close-modal-btn" class="action-btn">Close Window</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Project Aetheris Space Program. Created for the TSA Website Design Competition.</p>
+        <div class="footer-links">
+            <a href="./docs/aetheries-portfolio.pdf" target="_blank">Portfolio</a>
+            <a href="./docs/aetheries-plan-of-work.pdf" target="_blank">Plan of Work Log</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
